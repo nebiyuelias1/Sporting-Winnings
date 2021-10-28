@@ -1,0 +1,6 @@
+{
+  "appTitle": "sporting_winnings",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
