@@ -30,3 +30,8 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+
+  fonts:
+    - family: CustomIcons # the name of your font family
+      fonts:
+        - asset: assets/fonts/CustomIcons.ttf # your font file name and the directory
