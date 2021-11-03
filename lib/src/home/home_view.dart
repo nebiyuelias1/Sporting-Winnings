@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sporting_winnings/src/custom_theme.dart';
-import 'package:sporting_winnings/src/home/custom_icons.dart';
+import 'package:sporting_winnings/src/custom_icons.dart';
+import 'package:sporting_winnings/src/home_tab/home_tab.dart';
+import 'package:sporting_winnings/src/today_tab/today_tab.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -27,6 +29,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(85.0),
         child: AppBar(
+          elevation: 0,
           bottom: TabBar(
             labelColor: Colors.white,
             unselectedLabelColor: CustomColor.unselectedLabelColor,
@@ -57,8 +60,8 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
         ),
       ),
       body: TabBarView(controller: _controller, children: const [
-        Text('Tab 1'),
-        Text('Tab 2'),
+        HomeTab(),
+        TodayTab(),
         Text('Tab 3'),
       ]),
     );
