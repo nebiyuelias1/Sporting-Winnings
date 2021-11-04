@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sporting_winnings/src/custom_theme.dart';
 import 'package:sporting_winnings/src/custom_icons.dart';
-import 'package:sporting_winnings/src/home_tab/home_tab.dart';
-import 'package:sporting_winnings/src/today_tab/today_tab.dart';
+import 'package:sporting_winnings/src/home/tabs/home_tab.dart';
+import 'package:sporting_winnings/src/home/tabs/today_tab.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
