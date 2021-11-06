@@ -13,6 +13,7 @@ class CustomColor {
   static const Color betOptionBorderColor = Color(0xFF076DA7);
   static const Color betOptionTextColor = Color(0xFF7598AC);
   static const Color betOptionHeaderTextColor = Color(0xFFD0D0D0);
+  static const Color removeButtonBackgroundColor = Color(0xFFEF5555);
 }
 
 class CustomTheme {
