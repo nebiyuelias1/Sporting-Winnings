@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sporting_winnings/src/custom_theme.dart';
-import 'package:sporting_winnings/src/home/tabs/sports_tab_bar.dart';
+import 'package:sporting_winnings/src/home/sports_tab_bar.dart';
 
 import '../betting_list_item.dart';
 

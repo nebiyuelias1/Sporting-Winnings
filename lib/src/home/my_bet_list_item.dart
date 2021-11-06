@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sporting_winnings/src/custom_theme.dart';
 import 'package:sporting_winnings/src/home/betting_option.dart';
+import 'package:sporting_winnings/src/home/betting_teams.dart';
 
-import 'betting_teams.dart';
-
-class BettingListItem extends StatelessWidget {
-  const BettingListItem({Key? key}) : super(key: key);
+class MyBetListItem extends StatelessWidget {
+  const MyBetListItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,18 +39,25 @@ class _ColumnRight extends StatelessWidget {
         SizedBox(
           width: 8.0,
         ),
-        BettingOption(
-          header: 'DRAW',
-          selected: false,
-        ),
-        SizedBox(
-          width: 8.0,
-        ),
-        BettingOption(
-          header: 'T2',
-          selected: false,
-        ),
+        _RemoveButton()
       ],
+    );
+  }
+}
+
+class _RemoveButton extends StatelessWidget {
+  const _RemoveButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 38,
+      height: 30,
+      color: CustomColor.removeButtonBackgroundColor,
+      child: const Icon(
+        Icons.close,
+        color: Colors.white,
+      ),
     );
   }
 }

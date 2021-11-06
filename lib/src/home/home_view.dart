@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sporting_winnings/src/custom_theme.dart';
 import 'package:sporting_winnings/src/custom_icons.dart';
 import 'package:sporting_winnings/src/home/tabs/home_tab.dart';
+import 'package:sporting_winnings/src/home/tabs/profit_tab.dart';
 import 'package:sporting_winnings/src/home/tabs/today_tab.dart';
 
 class HomeView extends StatefulWidget {
@@ -62,7 +63,7 @@ class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
       body: TabBarView(controller: _controller, children: const [
         HomeTab(),
         TodayTab(),
-        Text('Tab 3'),
+        ProfitTab(),
       ]),
     );
   }
