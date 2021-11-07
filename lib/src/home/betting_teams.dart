@@ -1,35 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:sporting_winnings/src/custom_theme.dart';
 
+import 'data/models/game.dart';
+
 class BettingTeams extends StatelessWidget {
+  final Game game;
+  final bool isLive;
   static const teamsStyle =
       TextStyle(color: CustomColor.teamsColor, fontSize: 14);
 
-  const BettingTeams({Key? key}) : super(key: key);
+  const BettingTeams({Key? key, required this.game, this.isLive = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final time = DateFormat.Hm().format(game.time);
+    final date = isLive ? 'Today' : DateFormat('dd/MM/y').format(game.time);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.max,
-      children: const [
+      children: [
         Text(
-          '22:45    15/09/2021',
-          style: TextStyle(
+          '$time    $date',
+          style: const TextStyle(
             color: CustomColor.dateTimeColor,
             fontSize: 10,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 12.0,
         ),
         Text(
-          'Manchester United',
+          game.home.name,
           style: teamsStyle,
         ),
         Text(
-          'Wolverhampton',
+          game.away.name,
           style: teamsStyle,
         )
       ],

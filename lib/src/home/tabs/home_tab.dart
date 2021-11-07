@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:sporting_winnings/src/custom_theme.dart';
 import 'package:sporting_winnings/src/home/sports_tab_bar.dart';
-
-import '../betting_list_item.dart';
+import 'package:sporting_winnings/src/sport_tabs/basketball_tab.dart';
+import 'package:sporting_winnings/src/sport_tabs/hockey_tab.dart';
+import 'package:sporting_winnings/src/sport_tabs/soccer_tab.dart';
+import 'package:sporting_winnings/src/sport_tabs/tennis_tab.dart';
 
 class HomeTab extends StatelessWidget {
-  const HomeTab({Key? key}) : super(key: key);
+  final VoidCallback onTap;
+  const HomeTab({
+    Key? key,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +24,17 @@ class HomeTab extends StatelessWidget {
           backgroundColor: Colors.white,
           title: const SportsTabBar(),
         ),
-        body:  Padding(
+        body: Padding(
           padding: const EdgeInsets.only(top: 8.0),
-          child: Column(
-            children: const [
-              BettingListItem(),
-              BettingListItem(),
-              BettingListItem(),
+          child: TabBarView(
+            children: [
+              SoccerTab(isLive: false, onTap: onTap),
+              TennisTab(isLive: false, onTap: onTap),
+              BasketBallTab(
+                isLive: false,
+                onTap: onTap,
+              ),
+              HockeyTab(isLive: false, onTap: onTap),
             ],
           ),
         ),

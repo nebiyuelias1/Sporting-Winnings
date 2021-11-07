@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sporting_winnings/src/custom_theme.dart';
 import 'package:sporting_winnings/src/home/betting_option.dart';
-import 'package:sporting_winnings/src/home/betting_teams.dart';
+import 'package:sporting_winnings/src/home/bloc/betting_bloc.dart';
+import 'package:sporting_winnings/src/home/data/models/odd_option.dart';
+
+import 'betting_teams.dart';
+import 'data/models/game.dart';
 
 class MyBetListItem extends StatelessWidget {
-  const MyBetListItem({Key? key}) : super(key: key);
+  final Game game;
+  const MyBetListItem({Key? key, required this.game}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +20,11 @@ class MyBetListItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            BettingTeams(),
-            _ColumnRight(),
+          children: [
+            BettingTeams(game: game),
+            _ColumnRight(
+              game: game,
+            ),
           ],
         ),
       ),
@@ -25,38 +33,64 @@ class MyBetListItem extends StatelessWidget {
 }
 
 class _ColumnRight extends StatelessWidget {
-  const _ColumnRight({Key? key}) : super(key: key);
+  final Game game;
+  const _ColumnRight({Key? key, required this.game}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String header;
+    double? odd;
+    if (game.oddOption == OddOption.home) {
+      header = 'T1';
+      odd = game.odd!.homeOdd;
+    } else if (game.oddOption == OddOption.away) {
+      header = 'T2';
+      odd = game.odd!.awayOdd;
+    } else {
+      header = 'DRAW';
+      odd = game.odd!.drawOdd;
+    }
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
-      children: const [
+      children: [
         BettingOption(
-          header: 'T1',
-          selected: true,
+          header: header,
+          boldHeader: true,
+          selected: false,
+          odd: odd,
+          onTap: () {},
         ),
-        SizedBox(
+        const SizedBox(
           width: 8.0,
         ),
-        _RemoveButton()
+        _RemoveButton(
+          gameId: game.gameId,
+        )
       ],
     );
   }
 }
 
 class _RemoveButton extends StatelessWidget {
-  const _RemoveButton({Key? key}) : super(key: key);
+  final String gameId;
+
+  const _RemoveButton({Key? key, required this.gameId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 38,
-      height: 30,
-      color: CustomColor.removeButtonBackgroundColor,
-      child: const Icon(
-        Icons.close,
-        color: Colors.white,
+    return GestureDetector(
+      onTap: () {
+        context.read<BettingBloc>().add(BetRemoved(gameId));
+      },
+      child: Container(
+        width: 38,
+        height: 30,
+        color: CustomColor.removeButtonBackgroundColor,
+        child: const Icon(
+          Icons.close,
+          color: Colors.white,
+        ),
       ),
     );
   }
