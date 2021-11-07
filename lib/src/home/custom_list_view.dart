@@ -12,12 +12,12 @@ class CustomListView extends StatefulWidget {
   final SportCategory category;
   final VoidCallback onTap;
 
-  const CustomListView(
-      {Key? key,
-      required this.category,
-      required this.isLive,
-      required this.onTap})
-      : super(key: key);
+  const CustomListView({
+    Key? key,
+    required this.category,
+    required this.isLive,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   State<CustomListView> createState() => _CustomListViewState();

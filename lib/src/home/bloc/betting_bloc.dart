@@ -44,6 +44,7 @@ class BettingBloc extends Bloc<BettingEvent, BettingState> {
           category: event.category,
           isLive: event.isLive,
           profit: state.profit,
+          showcaseStatus: state.showcaseStatus,
           bets: [..._selectBets()]));
     });
     on<LoadLiveGamesRequested>((event, emit) async {
@@ -126,6 +127,12 @@ class BettingBloc extends Bloc<BettingEvent, BettingState> {
     on<BettingAmountChanged>((event, emit) {
       final profit = _calculateProfit(amount: event.amount, bets: state.bets);
       emit(state.copyWith(profit: profit, bettingAmount: event.amount));
+    });
+    on<ShowcaseStarted>((event, emit) {
+      emit(state.copyWith(showcaseStatus: ShowcaseStatus.started));
+    });
+    on<ShowcaseFinished>((event, emit) {
+      emit(state.copyWith(showcaseStatus: ShowcaseStatus.finished));
     });
   }
 

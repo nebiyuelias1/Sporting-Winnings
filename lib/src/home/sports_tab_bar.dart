@@ -1,22 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:showcaseview/showcaseview.dart';
 import 'package:sporting_winnings/src/custom_icons.dart';
 import 'package:sporting_winnings/src/custom_theme.dart';
 
 class SportsTabBar extends StatelessWidget {
-  const SportsTabBar({Key? key}) : super(key: key);
+  final GlobalKey? globalKey;
+  const SportsTabBar({Key? key, this.globalKey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const TabBar(
+    final Widget child;
+    if (globalKey != null) {
+      child = Showcase(
+        key: globalKey,
+        description: '1. Select Your Category',
+        overlayPadding:
+            const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+        child: const _CustomTab(icon: CustomIcons.soccer, text: 'Football'),
+      );
+    } else {
+      child = const _CustomTab(icon: CustomIcons.soccer, text: 'Football');
+    }
+    return TabBar(
       isScrollable: true,
       labelColor: CustomColor.sportsTabBarLabelColor,
       unselectedLabelColor: CustomColor.unselectedLabelColor,
       indicatorColor: CustomColor.primaryColor,
       tabs: [
-        _CustomTab(icon: CustomIcons.soccer, text: 'Football'),
-        _CustomTab(icon: CustomIcons.tennis, text: 'Tennis'),
-        _CustomTab(icon: CustomIcons.basketball, text: 'Basketball'),
-        _CustomTab(icon: CustomIcons.icehockey, text: 'Hockey'),
+        child,
+        const _CustomTab(icon: CustomIcons.tennis, text: 'Tennis'),
+        const _CustomTab(icon: CustomIcons.basketball, text: 'Basketball'),
+        const _CustomTab(icon: CustomIcons.icehockey, text: 'Hockey'),
       ],
     );
   }

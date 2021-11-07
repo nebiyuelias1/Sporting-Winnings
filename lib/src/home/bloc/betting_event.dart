@@ -64,3 +64,13 @@ class BettingAmountChanged extends BettingEvent {
   @override
   List<Object?> get props => [amount];
 }
+
+class ShowcaseStarted extends BettingEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class ShowcaseFinished extends BettingEvent {
+  @override
+  List<Object?> get props => [];
+}
