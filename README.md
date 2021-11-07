@@ -1,17 +1,14 @@
 # sporting_winnings
 
-A new Flutter project.
+The application will display upcoming sporting events and betting odds on them. The user can select a certain outcome of events and calculate the amount of possible winnings in case of betting on this result.
 
 ## Getting Started
-
-This project is a starting point for a Flutter application that follows the
-[simple app state management
-tutorial](https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple).
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
+In order to run this project, you must create the file: **secrets.dart** inside the **lib** directory right next to the
+**main.dart** file. In that file you should have two constants (the variable should be named exactly as listed here):
+`
+const apiToken = '<your api token>';
+const apiLogin = '<your api login>';
+`
 ## Assets
 
 The `assets` directory houses images, fonts, and any other files you want to
@@ -28,4 +25,3 @@ the `lib/src/localization` directory.
 To support additional languages, please visit the tutorial on
 [Internationalizing Flutter
 apps](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
-# Sporting-Winnings
