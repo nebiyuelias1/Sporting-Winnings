@@ -1,6 +1,7 @@
 part of 'betting_bloc.dart';
 
 enum LoadingStatus { pure, loading, success, failure }
+enum ShowcaseStatus { pure, started, finished }
 
 class BettingState extends Equatable {
   final List<Game> games;
@@ -11,20 +12,32 @@ class BettingState extends Equatable {
   final int? nextPage;
   final double profit;
   final double bettingAmount;
+  final ShowcaseStatus showcaseStatus;
 
-  const BettingState(
-      {this.games = const [],
-      this.bets = const [],
-      this.status = LoadingStatus.pure,
-      this.nextPage,
-      this.category,
-      this.isLive,
-      this.profit = 0,
-      this.bettingAmount = 0});
+  const BettingState({
+    this.games = const [],
+    this.bets = const [],
+    this.status = LoadingStatus.pure,
+    this.nextPage,
+    this.category,
+    this.isLive,
+    this.profit = 0,
+    this.bettingAmount = 0,
+    this.showcaseStatus = ShowcaseStatus.pure,
+  });
 
   @override
-  List<Object?> get props =>
-      [games, status, category, nextPage, isLive, bets, profit, bettingAmount];
+  List<Object?> get props => [
+        games,
+        status,
+        category,
+        nextPage,
+        isLive,
+        bets,
+        profit,
+        bettingAmount,
+        showcaseStatus
+      ];
 
   BettingState copyWith(
       {List<Game>? games,
@@ -34,7 +47,8 @@ class BettingState extends Equatable {
       bool? isLive,
       List<Game>? bets,
       double? profit,
-      double? bettingAmount}) {
+      double? bettingAmount,
+      ShowcaseStatus? showcaseStatus}) {
     return BettingState(
       games: games ?? this.games,
       status: status ?? this.status,
@@ -44,6 +58,7 @@ class BettingState extends Equatable {
       bets: bets ?? this.bets,
       profit: profit ?? this.profit,
       bettingAmount: bettingAmount ?? this.bettingAmount,
+      showcaseStatus: showcaseStatus ?? this.showcaseStatus,
     );
   }
 }

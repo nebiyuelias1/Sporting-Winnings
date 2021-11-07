@@ -7,10 +7,14 @@ import 'package:sporting_winnings/src/sport_tabs/soccer_tab.dart';
 import 'package:sporting_winnings/src/sport_tabs/tennis_tab.dart';
 
 class HomeTab extends StatelessWidget {
+  final GlobalKey globalKey1;
+  final GlobalKey globalKey2;
   final VoidCallback onTap;
   const HomeTab({
     Key? key,
     required this.onTap,
+    required this.globalKey1,
+    required this.globalKey2,
   }) : super(key: key);
 
   @override
@@ -22,13 +26,15 @@ class HomeTab extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
-          title: const SportsTabBar(),
+          title: SportsTabBar(
+            globalKey: globalKey1,
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.only(top: 8.0),
           child: TabBarView(
             children: [
-              SoccerTab(isLive: false, onTap: onTap),
+              SoccerTab(isLive: false, onTap: onTap, globalKey: globalKey2),
               TennisTab(isLive: false, onTap: onTap),
               BasketBallTab(
                 isLive: false,
